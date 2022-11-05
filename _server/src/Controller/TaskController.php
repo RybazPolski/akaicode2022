@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Task;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Form\TaskCreatorType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,29 +16,11 @@ class TaskController extends AbstractController
     public function getAllTasks(ManagerRegistry $doctrine)
     {
         $rep = $doctrine->getRepository(Task::class);
-
-        return new Response(json_encode($rep->findAll()));
+        
+        return new JsonResponse($rep->findAll());
     }
 
-    #[Route('task/new', name: 'app_task_new')]
-    public function addTask()
-    {
-        $task = new Task();
-        $form = $this->createForm(TaskCreatorType::class, $task);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $entityManager->persist($task);
-            $entityManager->flush();
-            // do anything else you need here, like send an email
-
-            return $this->redirectToRoute('app_task');
-        }
-
-        return $this->render('task/register.html.twig', [
-            'taskForm' => $form->createView(),
-        ]);
-    }
     // #[Route('/task', name: 'app_task')]
     // public function index(): Response
     // {
