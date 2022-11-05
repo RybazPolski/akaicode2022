@@ -19,7 +19,7 @@ class Task
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\ManyToMany(targetEntity: user::class, inversedBy: 'tasks')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'tasks')]
     private Collection $user;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
