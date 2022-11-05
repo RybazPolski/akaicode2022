@@ -2,6 +2,12 @@
     transition: all;
     transition-duration: 2s;
 }
+
+@font-face {
+    font-family: ComicSans;
+    src: url(https://raw.githubusercontent.com/kristopolous/lowcon/master/fonts/comic-sans.woff);
+}
+
 html, body {
     position: relative;
     min-width: 100vw;
@@ -13,6 +19,8 @@ html, body {
     overflow: hidden;
     margin: 0;
     padding: 0;
+    font-family: ComicSans;       
+    
 }
 body{
     position: relative;
@@ -63,51 +71,68 @@ body{
     margin-left: 5vw;   
     height: 90%; 
 }
-[id^=noticeboard],[id^=taskboard],#taskClose,#taskEdit,#taskConfirm,#taskCancel,#taskRemove,#taskTake{
+[id^=noticeboard],[id^=taskboard],#taskClose,#taskEdit,#taskConfirm,#taskCancel,#taskRemove,#taskTake,#mytasksClose,#mytaskClose,#mytaskDone,#mytaskEdit,#mytaskRemove,#mytaskCancel,#mytaskConfirm{
     box-sizing: border-box;
     font-size: 10vw;
     font-weight: bolder;
     padding-left: 5%;
     padding-top: 2%;
 }
-#taskTable{
+#taskTable, #mytaskTable{
     margin-left: 55vw;
     margin-top: 15vh;
     width: 90vw;
 }
-#taskTable td{
+#taskTable td, #mytaskTable td{
     height: 45vw;
 }
-#task table{
+#task table, #mytask table{
     margin-top: 5vw;
     margin-left: 5vw;
     width: 80vw;
 }
-#taskDifficulty{
+#taskDifficulty, #mytaskDifficulty{
     width: 5vw;
     border: 0;
     background: none;
 }
-td:has(>#taskFiddiculty){
-    text-align: right;
-}
-#taskTitle{
+#taskTitle, #mytaskTitle{
     border: 0;
     background: none;
     font-weight: bold;
 }
-#taskDesc{
+#taskDesc, #mytaskDesc{
     border: 0;
     background: none;
     height: 30vw;
     width: 80vw;
 }
-#taskDue{
+#taskDue, #mytaskDue{
     border: 0;
     background: none;
     margin-right: 5vw;
 }
-img{
+img.user{
     width: 10vw;
     border-radius: 50%;
+}
+#ogloszenieTitle:focus ~ #noticeboardL{
+    display: none;
+}
+#mytasksTable{
+    height: 130vw;
+    margin-top: 17.5vh;
+    margin-left: 10vw;
+    width: 60vw;
+}
+#mytasksTable td{
+    background-image: url(../graphics/paperScrapB.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    text-align: center;
+}
+#mytasksU,#mytasksD{
+    text-align: center;
+    font-size: 10vw;
 }
