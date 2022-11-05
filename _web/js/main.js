@@ -310,7 +310,7 @@ $('#taskClose').on("click",(()=>{
 
 
 
-
+var mytaskEdit = false, myoldDesc, myoldTitle, myoldDue, myoldDifficulty
 
 envf.addSprite("left","mytasks","graphics/scrollRozwiniety.png",{x:-90,y:102.5,width:80,height:201.135,z:10})
 $('#mytasks').html("<table id='mytasksTable'><tr><td id='mytask1'></td></tr><tr><td id='mytask2'></td></tr><tr><td id='mytask3'></td></tr><table>")
@@ -324,6 +324,7 @@ $("#mytasksClose").html("-")
 
 $("#scrollPedestal").on("click",()=>{
     $('#vignette').css('display', 'block')
+    envf.moveSprite("scrollPedestal","down")
     envf.moveSprite("mytasks","up")
     envf.moveSprite("mytasksU","up")
     envf.moveSprite("mytasksD","up")
@@ -361,8 +362,11 @@ $("#mytaskCancel").html("&#10008;")
 envf.addSprite("lControls","mytaskRemove","graphics/paperScrapDR.png",{x:82-100,y:130,width:16.65,height:16.03,z:35})
 $("#mytaskRemove").html("&#128465;")
 
-envf.addSprite("lControls","mytaskDone","graphics/paperScrapDG.png",{x:42-100,y:160,width:16.65,height:16.03,z:35})
-$("#mytaskDone").html("&#10003;")
+envf.addSprite("lControls","mytaskDone","graphics/paperScrapDG.png",{x:50-100,y:160,width:16.65,height:16.03,z:35})
+$("#mytaskDone").html("&#9745;")
+
+envf.addSprite("lControls","mytaskAbort","graphics/paperScrapDR.png",{x:32-100,y:160,width:16.65,height:16.03,z:35})
+$("#mytaskAbort").html("&#128465;")
 
 $('#mytask1, #mytask2, #mytask3').on("click",(()=>{
     $('#vignette').css('z-index', '25')
@@ -370,6 +374,7 @@ $('#mytask1, #mytask2, #mytask3').on("click",(()=>{
     envf.moveSprite("mytaskClose","up")
     envf.moveSprite("mytaskEdit","up")
     envf.moveSprite("mytaskDone","up")
+    envf.moveSprite("mytaskAbort","up")
 
 }))
 
@@ -380,34 +385,36 @@ $('#mytaskClose').on("click",(()=>{
     if(mytaskEdit){
         envf.moveSprite("mytaskCancel","down")
         envf.moveSprite("mytaskConfirm","down")
-        envf.moveSprite("mytaskRemove","down")            
+        envf.moveSprite("mytaskRemove","down")     
         mytaskEdit = false
         document.querySelector("#mytaskDesc").readOnly = true
         document.querySelector("#mytaskTitle").readOnly = true
         document.querySelector("#mytaskDue").readOnly = true
         document.querySelector("#mytaskDifficulty").readOnly = true
-        document.querySelector("#mytaskDesc").value = oldDesc
-        document.querySelector("#mytaskTitle").value = oldTitle 
-        document.querySelector("#mytaskDue").value = oldDue
-        document.querySelector("#mytaskDifficulty").value = oldDifficulty
+        document.querySelector("#mytaskDesc").value = myoldDesc
+        document.querySelector("#mytaskTitle").value = myoldTitle 
+        document.querySelector("#mytaskDue").value = myoldDue
+        document.querySelector("#mytaskDifficulty").value = myoldDifficulty
     }else{
         envf.moveSprite("mytaskDone","down")
-        envf.moveSprite("mytaskDone","down")
+        envf.moveSprite("mytaskAbort","down")
+        envf.moveSprite("mytaskEdit","down")
     }
 })
 )
 $('#mytaskEdit').on("click",(()=>{
     mytaskEdit = true
-    oldDesc = document.querySelector("#mytaskDesc").value
-    oldTitle = document.querySelector("#mytaskTitle").value
-    oldDue = document.querySelector("#mytaskDue").value
-    oldDifficulty = document.querySelector("#mytaskDifficulty").value
+    myoldDesc = document.querySelector("#mytaskDesc").value
+    myoldTitle = document.querySelector("#mytaskTitle").value
+    myoldDue = document.querySelector("#mytaskDue").value
+    myoldDifficulty = document.querySelector("#mytaskDifficulty").value
     document.querySelector("#mytaskDesc").readOnly = false
     document.querySelector("#mytaskTitle").readOnly = false
     document.querySelector("#mytaskDue").readOnly = false
     document.querySelector("#mytaskDifficulty").readOnly = false
     envf.moveSprite("mytaskEdit","down")
     envf.moveSprite("mytaskDone","down")
+    envf.moveSprite("mytaskAbort","down")
 
     envf.moveSprite("mytaskCancel","up")
     envf.moveSprite("mytaskConfirm","up")
@@ -420,14 +427,26 @@ $('#mytaskCancel').on("click",(()=>{
     document.querySelector("#mytaskTitle").readOnly = true
     document.querySelector("#mytaskDue").readOnly = true
     document.querySelector("#mytaskDifficulty").readOnly = true
-    document.querySelector("#mytaskDesc").value = oldDesc
-    document.querySelector("#mytaskTitle").value = oldTitle 
-    document.querySelector("#mytaskDue").value = oldDue
-    document.querySelector("#mytaskDifficulty").value = oldDifficulty
+    document.querySelector("#mytaskDesc").value = myoldDesc
+    document.querySelector("#mytaskTitle").value = myoldTitle 
+    document.querySelector("#mytaskDue").value = myoldDue
+    document.querySelector("#mytaskDifficulty").value = myoldDifficulty
     envf.moveSprite("mytaskEdit","up")
     envf.moveSprite("mytaskDone","up")
+    envf.moveSprite("mytaskAbort","up")
 
     envf.moveSprite("mytaskCancel","down")
     envf.moveSprite("mytaskConfirm","down")
     envf.moveSprite("mytaskRemove","down")
 }))
+
+$('#mytasksClose').on("click",(()=>{
+    $('#vignette').css('display', 'none')
+    envf.moveSprite("scrollPedestal","up")
+    envf.moveSprite("mytasks","down")
+    envf.moveSprite("mytasksU","down")
+    envf.moveSprite("mytasksD","down")
+    envf.moveSprite("mytasksClose","down")
+    envf.moveSprite("mytaskEdit","down")
+})
+)

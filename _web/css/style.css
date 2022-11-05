@@ -71,7 +71,7 @@ body{
     margin-left: 5vw;   
     height: 90%; 
 }
-[id^=noticeboard],[id^=taskboard],#taskClose,#taskEdit,#taskConfirm,#taskCancel,#taskRemove,#taskTake,#mytasksClose,#mytaskClose,#mytaskDone,#mytaskEdit,#mytaskRemove,#mytaskCancel,#mytaskConfirm{
+[id^=noticeboard],[id^=taskboard],#taskClose,#taskEdit,#taskConfirm,#taskCancel,#taskRemove,#taskTake,#mytasksClose,#mytaskClose,#mytaskDone,#mytaskEdit,#mytaskRemove,#mytaskCancel,#mytaskConfirm,#mytaskAbort{
     box-sizing: border-box;
     font-size: 10vw;
     font-weight: bolder;
