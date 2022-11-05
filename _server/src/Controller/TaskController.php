@@ -24,7 +24,6 @@ class TaskController extends AbstractController
     {
         $task = new Task();
         $form = $this->createForm(TaskCreatorType::class, $task);
-        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -35,8 +34,8 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('app_task');
         }
 
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
+        return $this->render('task/register.html.twig', [
+            'taskForm' => $form->createView(),
         ]);
     }
     // #[Route('/task', name: 'app_task')]
